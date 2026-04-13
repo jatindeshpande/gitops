@@ -1,35 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata: 
+metadata:
   name: devops-app
-spec: 
-  replicas:
+spec:
+  replicas: {{ .Values.replicaCount }}
   selector:
-    matchLabels: 
+    matchLabels:
       app: devops-app
+
+  strategy:
+    type: RollingUpdate
+
   template:
     metadata:
-      labels: 
+      labels:
         app: devops-app
+
     spec:
-      containers: 
+      containers:
         - name: devops-app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+
           ports:
             - containerPort: {{ .Values.containerPort }}
 
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
           readinessProbe:
             httpGet:
-              path: /
+              path: /ready
               port: {{ .Values.containerPort }}
             initialDelaySeconds: 5
             periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
 
           livenessProbe:
             httpGet:
-              path: /
+              path: /live
               port: {{ .Values.containerPort }}
             initialDelaySeconds: 15
             periodSeconds: 20
-    
+            timeoutSeconds: 2
+            failureThreshold: 3

@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: 861142265676.dkr.ecr.us-east-2.amazonaws.com/devops-app
-  tag: "commit-sha-or-version"
+  tag: 3d1f71d8e024b682ae02bcdbacaf80024e9c45fa
   pullPolicy: IfNotPresent
 
 service:

@@ -2,8 +2,8 @@ replicaCount: 2
 
 image:
   repository: 861142265676.dkr.ecr.us-east-2.amazonaws.com/devops-app
-  tag: latest
-  pullPolicy: Always
+  tag: "commit-sha-or-version"
+  pullPolicy: IfNotPresent
 
 service:
   type: LoadBalancer

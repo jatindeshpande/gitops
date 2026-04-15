@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: 861142265676.dkr.ecr.us-east-2.amazonaws.com/devops-app
-  tag: 560f1079e6458446882a7e850777fe7a87428896
+  tag: f258f11574b1ce7dde6e0474978b374065d5a572
   pullPolicy: IfNotPresent
 
 service:

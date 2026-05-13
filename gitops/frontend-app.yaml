@@ -1,15 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
+
 metadata:
-  name: devops-app
+  name: frontend-app
   namespace: argocd
+
 spec:
   project: default
 
   source:
-    repoURL: https://github.com/jatindeshpande/gitops
+    repoURL: https://github.com/jatindeshpande/gitops.git
     targetRevision: HEAD
-    path: helm/devops-app
+    path: helm/helm/devops-app/templates/frontend
 
   destination:
     server: https://kubernetes.default.svc

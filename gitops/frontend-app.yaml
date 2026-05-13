@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/jatindeshpande/gitops.git
     targetRevision: HEAD
-    path: helm/helm/devops-app/templates/frontend
+    path: helm/devops-app/templates/frontend
 
   destination:
     server: https://kubernetes.default.svc
